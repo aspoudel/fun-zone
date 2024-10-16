@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 export default async function FunTime() {
   const videoArticles = await fetchVideoArticles();
-  const videoArticlesData = videoArticles.fetchedVideos.rows;
+  const videoArticlesData = videoArticles.fetchedVideos?.rows;
 
   return (
     <>
@@ -12,7 +12,7 @@ export default async function FunTime() {
         <h1 className="text-7xl text-slate-50 text-center">FUNZONE</h1>
       </div>
       <div className="">
-        {videoArticlesData.map((videoData, index) => (
+        {videoArticlesData?.map((videoData, index) => (
           <VideoRow
             key={index}
             className={clsx(index % 2 === 1 ? "bg-gray-300 p-16" : "")}

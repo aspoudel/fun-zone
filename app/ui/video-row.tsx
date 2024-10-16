@@ -5,13 +5,21 @@ import clsx from "clsx";
 import Image from "next/image";
 import playIcon from "@/public/assets/icons/play_icon.png";
 
+interface VideoRowProps {
+  title: string;
+  description: string;
+  link: string;
+  thumbnail_url: string;
+  className?: string;
+}
+
 export default function VideoRow({
   title,
   description,
   link,
   thumbnail_url,
   className,
-}) {
+}: VideoRowProps) {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <>
@@ -26,10 +34,10 @@ export default function VideoRow({
                 className="mt-8 w-[840px] h-[472.5px]"
                 src={link}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
               ></iframe>
             ) : (
               <div

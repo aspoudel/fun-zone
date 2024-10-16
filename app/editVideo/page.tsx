@@ -82,12 +82,12 @@ export default function EditVideo() {
             name="oldArticleLink"
             className="collapse"
           />
-          <input value={id} name="videoId" className="collapse" />
+          <input value={id || ""} name="videoId" className="collapse" />
           <input
-            value={thumbnailUrl}
+            value={thumbnailUrl || ""}
             name="thumbnailUrl"
             className="collapse"
-          ></input>
+          />
           <div className="mt-8">
             <p>Edit Article Headline:</p>
             <input

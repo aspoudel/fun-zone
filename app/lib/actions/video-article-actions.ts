@@ -68,10 +68,7 @@ export async function uploadVideoArticle(
   const session = await auth();
   try {
     const file = formData.get("articleThumbnail");
-    if (
-      file === null ||
-      (file !== null && typeof file === "object" && file.size === 0)
-    ) {
+    if (!file || !(file instanceof File)) {
       throw new Error("Please select a file");
     }
 
@@ -97,6 +94,9 @@ export async function uploadVideoArticle(
       file.name;
 
     const userId = session?.user?.id;
+    if (!userId) {
+      throw new Error("User ID is missing");
+    }
     const response = await uploadVideoArticleInformation(
       title,
       description,
@@ -198,7 +198,8 @@ export async function updateVideoArticle(
   console.log(formData);
   try {
     const videoId = formData.get("videoId")?.toString();
-    const file = formData.get("articleThumbnail");
+    const file = formData.get("articleThumbnail") as File;
+
     console.log("here");
     console.log(file.size === 0);
     const parsedCredentials = z
@@ -217,10 +218,10 @@ export async function updateVideoArticle(
     }
 
     const { title, description, link } = parsedCredentials.data;
-    let oldTitle = formData.get("oldTitle");
-    let oldDescription = formData.get("oldDescription");
-    let oldArticleLink = formData.get("oldArticleLink");
-    const old_thumbnail_url = formData.get("thumbnailUrl");
+    let oldTitle = formData.get("oldTitle")?.toString();
+    let oldDescription = formData.get("oldDescription")?.toString();
+    let oldArticleLink = formData.get("oldArticleLink")?.toString();
+    const old_thumbnail_url = formData.get("thumbnailUrl")?.toString();
     const new_thumbnail_url =
       "https://fun-zone-video-articles.s3.ap-south-1.amazonaws.com/" +
       file.name;
@@ -254,7 +255,10 @@ export async function updateVideoArticle(
         console.log("Upload response load");
         console.log(uploadResponse);
         if (uploadResponse.success) {
-          const old_thumbnail_name = old_thumbnail_url.split("/").pop();
+          let old_thumbnail_name = old_thumbnail_url?.split("/").pop();
+          if (!old_thumbnail_name) {
+            old_thumbnail_name = "";
+          }
           console.log(old_thumbnail_name);
           await deleteFileFromS3(old_thumbnail_name);
         } else {
@@ -267,7 +271,7 @@ export async function updateVideoArticle(
             throw new Error("Atomic Transaction re-rolled!");
           } else {
             console.log("SQL rollback error after the thumbnail error");
-            throw updateResponse.error;
+            throw uploadResponse.error;
           }
         }
       }
