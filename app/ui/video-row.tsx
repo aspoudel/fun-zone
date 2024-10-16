@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import playIcon from "@/public/assets/icons/play_icon.png";
 
-export default function videoRow({
+export default function VideoRow({
   title,
   description,
   link,

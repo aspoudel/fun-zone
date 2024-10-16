@@ -8,7 +8,7 @@ import { useActionState } from "react";
 
 const initialState = { message: "", status: "" };
 
-export default function uploadArticle() {
+export default function UploadArticle() {
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [state, formAction] = useActionState(uploadVideoArticle, initialState);
 

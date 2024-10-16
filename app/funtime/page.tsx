@@ -14,6 +14,7 @@ export default async function FunTime() {
       <div className="">
         {videoArticlesData.map((videoData, index) => (
           <VideoRow
+            key={index}
             className={clsx(index % 2 === 1 ? "bg-gray-300 p-16" : "")}
             title={videoData.title}
             description={videoData.description}
