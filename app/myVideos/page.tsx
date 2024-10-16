@@ -1,4 +1,4 @@
-import { fetchMyVideoArticles } from "@/app/lib/actions/video-articles-actions";
+import { fetchMyVideoArticles } from "@/app/lib/actions/video-article-actions";
 import { auth } from "@/auth";
 import { Button } from "@/app/ui/button";
 import Link from "next/link";

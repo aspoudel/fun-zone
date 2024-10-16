@@ -1,4 +1,4 @@
-import { fetchVideoArticles } from "@/app/lib/actions/video-articles-actions";
+import { fetchVideoArticles } from "@/app/lib/actions/video-article-actions";
 import VideoRow from "@/app/ui/video-row";
 import clsx from "clsx";
 

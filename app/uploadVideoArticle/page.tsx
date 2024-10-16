@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/app/ui/button";
 import { url } from "inspector";
-import { uploadVideoArticle } from "@/app/lib/actions/video-articles-actions";
+import { uploadVideoArticle } from "@/app/lib/actions/video-article-actions";
 import { useActionState } from "react";
 
 const initialState = { message: "", status: "" };

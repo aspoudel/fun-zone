@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { Button } from "@/app/ui/button";
-import { updateVideoArticle } from "@/app/lib/actions/video-articles-actions";
+import { updateVideoArticle } from "@/app/lib/actions/video-article-actions";
 import { useActionState } from "react";
 import { useSearchParams } from "next/navigation";
-import { getVideoArticle } from "@/app/lib/actions/video-articles-actions";
+import { getVideoArticle } from "@/app/lib/actions/video-article-actions";
 
 const initialState = { message: "", status: "" };
 
