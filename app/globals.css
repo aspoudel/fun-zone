@@ -1,4 +1,5 @@
 @tailwind utilities;
+@tailwind base;
 
 html, body {
   height: 100%;
@@ -16,4 +17,16 @@ html, body {
 
 .animate-marquee {
   animation: marquee 20s linear infinite;
+}
+
+.state-message.success {
+  color: green;
+}
+
+.state-message.error {
+  color: red;
+}
+
+.trapezoid-path {
+  clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%);
 }
