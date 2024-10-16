@@ -192,9 +192,9 @@ async function updateVideoArticleInformation(
 }
 
 export async function updateVideoArticle(
-  prevState: string | undefined,
+  state: { message: string; status: string },
   formData: FormData
-) {
+): Promise<{ message: string; status: string }> {
   console.log(formData);
   try {
     const videoId = formData.get("videoId")?.toString();
